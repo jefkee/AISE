@@ -1,0 +1,130 @@
+[
+  {
+    "experiment_id": "E01",
+    "datetime": "2025-12-19T22:55:32",
+    "name": "Logistic Regression (baseline)",
+    "justification": "Simple, interpretable baseline for binary classification.",
+    "hyperparameters": "{\"model__C\": 3.0}",
+    "search_space": {
+      "model__C": [
+        0.3,
+        1.0,
+        3.0
+      ]
+    },
+    "data_version": "data.csv:70acda78373d; test.csv:e10696f13c75",
+    "metrics": {
+      "accuracy": 0.8075056814691972,
+      "precision": 0.5619777158774373,
+      "recall": 0.8393135725429017,
+      "f1": 0.6732012513034411,
+      "roc_auc": 0.9059054143428302
+    },
+    "cv_metrics": {
+      "accuracy": 0.8127206590071326,
+      "precision": 0.5751807924556762,
+      "recall": 0.8504013391930348,
+      "f1": 0.6862232203878533,
+      "roc_auc": 0.908558469174125
+    },
+    "confusion_matrix": {
+      "tn": 9919,
+      "fp": 2516,
+      "fn": 618,
+      "tp": 3228
+    },
+    "interpretation": "More false positives than false negatives; the model flags <=50K as >50K. Precision is moderate; consider feature pruning or threshold tuning.",
+    "observations": "Baseline performance established.",
+    "next_steps": "Improve precision with feature pruning or threshold tuning."
+  },
+  {
+    "experiment_id": "E02",
+    "datetime": "2025-12-19T22:55:32",
+    "name": "Random Forest (tree-based)",
+    "justification": "Captures nonlinear interactions and handles mixed feature types.",
+    "hyperparameters": "{\"model__max_depth\": 16, \"model__min_samples_leaf\": 1, \"model__n_estimators\": 300}",
+    "search_space": {
+      "model__n_estimators": [
+        200,
+        300
+      ],
+      "model__max_depth": [
+        12,
+        16
+      ],
+      "model__min_samples_leaf": [
+        1,
+        2
+      ]
+    },
+    "data_version": "data.csv:70acda78373d; test.csv:e10696f13c75",
+    "metrics": {
+      "accuracy": 0.8263005957864996,
+      "precision": 0.592680262199563,
+      "recall": 0.8463338533541341,
+      "f1": 0.697151424287856,
+      "roc_auc": 0.9178670950617679
+    },
+    "cv_metrics": {
+      "accuracy": 0.829980508008104,
+      "precision": 0.6056500093333224,
+      "recall": 0.8435154871279527,
+      "f1": 0.704998279529983,
+      "roc_auc": 0.9184987705929801
+    },
+    "confusion_matrix": {
+      "tn": 10198,
+      "fp": 2237,
+      "fn": 591,
+      "tp": 3255
+    },
+    "interpretation": "More false positives than false negatives; the model flags <=50K as >50K. Precision is moderate; consider feature pruning or threshold tuning.",
+    "observations": "Model trained and evaluated on test set.",
+    "next_steps": "Improve precision with feature pruning or threshold tuning."
+  },
+  {
+    "experiment_id": "E03",
+    "datetime": "2025-12-19T22:55:32",
+    "name": "HistGradientBoosting (advanced)",
+    "justification": "Boosted trees often outperform single trees and capture complex patterns.",
+    "hyperparameters": "{\"model__learning_rate\": 0.05, \"model__max_depth\": 6, \"model__max_iter\": 300}",
+    "search_space": {
+      "model__max_iter": [
+        200,
+        300
+      ],
+      "model__learning_rate": [
+        0.05,
+        0.1
+      ],
+      "model__max_depth": [
+        3,
+        6
+      ]
+    },
+    "data_version": "data.csv:70acda78373d; test.csv:e10696f13c75",
+    "metrics": {
+      "accuracy": 0.8717523493642897,
+      "precision": 0.775894538606403,
+      "recall": 0.6427457098283932,
+      "f1": 0.7030716723549488,
+      "roc_auc": 0.927328567207827
+    },
+    "cv_metrics": {
+      "accuracy": 0.8721783679428118,
+      "precision": 0.7811374662263441,
+      "recall": 0.6519563620307034,
+      "f1": 0.7106675694214727,
+      "roc_auc": 0.9270682836472135
+    },
+    "confusion_matrix": {
+      "tn": 11721,
+      "fp": 714,
+      "fn": 1374,
+      "tp": 2472
+    },
+    "interpretation": "More false negatives than false positives; the model misses >50K cases. Recall is moderate; consider class weighting or threshold tuning.",
+    "observations": "Recall is moderate; the model misses some >50K cases.",
+    "next_steps": "Tune hyperparameters and consider threshold adjustment."
+  }
+]
